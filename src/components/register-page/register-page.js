@@ -11,7 +11,7 @@ class RegisterPage extends React.Component{
             registerForm:{
                 username:'',
                 login:'',
-                pass:'',
+                password:'',
                 email:'',
                 number:'',
             }
@@ -75,7 +75,7 @@ class RegisterPage extends React.Component{
                             </tr>
                             <tr>
                                 <td>password</td>
-                                <td><input type="text" name="pass" onChange={this.handleOnChange} value={password} placeholder="password"/></td>
+                                <td><input type="text" name="password" onChange={this.handleOnChange} value={password} placeholder="password"/></td>
                             </tr>
                             <tr>
                                 <td>repeat password</td>

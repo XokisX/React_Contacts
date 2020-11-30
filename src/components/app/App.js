@@ -23,7 +23,7 @@ class Contacts extends React.Component {
          <Route exact path={`/`}>
             <MainPage/>
          </Route>
-         <Route  path={`/login`}>
+         <Route path={`/login`}>
             <Login/>
          </Route>
          <Route path={`/register`}>

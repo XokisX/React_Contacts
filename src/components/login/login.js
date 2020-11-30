@@ -9,7 +9,7 @@ class Login extends React.Component{
             debug:false,
             userFormLogin:{
                 login:'',
-                pass:''
+                password:''
             }
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,10 +20,14 @@ class Login extends React.Component{
         console.log(this.state.userFormLogin);
         this.serverApi.loginUser(this.state.userFormLogin)
         .then((data)=>{
-            console.log(data);
             if(data.status){
                 alert("Successful");
-                window.location.replace("/");
+                localStorage.setItem('token',data.obj);
+                this.serverApi.getUserByToken(localStorage.getItem('token'))
+                .then((res)=>{
+                    console.log(res);
+                });
+                //window.location.replace("/");
             }else{
                 alert("Error");
             }
@@ -58,7 +62,7 @@ class Login extends React.Component{
 
                         <tr>
                             <td>Pass</td>
-                            <td><input name="pass" onChange={this.handleOnChange} type="text"></input></td>
+                            <td><input name="password" onChange={this.handleOnChange} type="text"></input></td>
                         </tr>
                     </tbody>
                 </table>
