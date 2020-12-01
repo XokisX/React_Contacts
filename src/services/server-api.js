@@ -26,7 +26,7 @@ export default class ServerApi{
     }
 
     async getUserByToken(token){
-        const res = await fetch(`${serverUrl}getUserByToken`,{
+        const res =  await fetch(`${serverUrl}getUserByToken`,{
             method:'GET',
             mode:'cors',
             headers:{
@@ -35,4 +35,6 @@ export default class ServerApi{
         })
         return await res.json();
     }
+
+    
 }

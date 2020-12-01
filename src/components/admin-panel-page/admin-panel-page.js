@@ -7,7 +7,6 @@ class AdminPanelPage extends React.Component{
         super(props);
         this.state={
             debug:true,
-            login: true
         }
         
     }
@@ -16,13 +15,18 @@ class AdminPanelPage extends React.Component{
 
     }
     
+    deleteStorage(){
+        localStorage.removeItem('token');
+        window.location.replace('/login');
+    }
 
     render(){
         let renderElem ;
-        if(this.state.login){
+        if(this.props.user.role==1){
             renderElem=(
                 <div>
                 admin panel page
+                <button onClick={this.deleteStorage}>Reset storage</button>
             </div>
             )
         }

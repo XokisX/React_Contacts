@@ -16,7 +16,7 @@ class Login extends React.Component{
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
-    handleSubmit(event){
+    handleSubmit(){
         console.log(this.state.userFormLogin);
         this.serverApi.loginUser(this.state.userFormLogin)
         .then((data)=>{
@@ -25,11 +25,17 @@ class Login extends React.Component{
                 localStorage.setItem('token',data.obj);
                 this.serverApi.getUserByToken(localStorage.getItem('token'))
                 .then((res)=>{
-                    console.log(res);
+                    this.props.saveUserDataUser(res.obj);
+                    if(res.obj.roleEntity.id==1){
+                        window.location.replace('/admin/panel');
+                    }else if(res.obj.roleEntity.id==2){
+                        window.location.replace('/user/mainPage');
+                    }
                 });
+               
                 //window.location.replace("/");
             }else{
-                alert("Error");
+                alert(data.message);
             }
         })
     }

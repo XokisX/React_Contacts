@@ -7,10 +7,6 @@ class MainPage extends React.Component{
         super(props);
         this.state={
             debug:true,
-            login: true
-        }
-        if(!this.state.login){
-            window.location.replace("/login");
         }
     }
 
@@ -18,13 +14,21 @@ class MainPage extends React.Component{
 
     }
     
+    deleteStorage(){
+        localStorage.removeItem('token');
+        window.location.replace('/login');
+    }
 
     render(){
         let renderElem ;
-        if(this.state.login){
+        let token = localStorage.getItem('token');
+        if(this.props.user.role==2){
             renderElem=(
                 <div>
                 main page
+                <button onClick={this.deleteStorage}>Reset storage</button>
+                <br></br>
+                {token}
             </div>
             )
         }
