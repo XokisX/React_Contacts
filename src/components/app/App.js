@@ -48,7 +48,7 @@ class Contacts extends React.Component {
    
     if(token!=null &&token!=""){
 
-      this.serverApi.getUserByToken(localStorage.getItem('token'))
+      this.serverApi.getUserByToken(token)
       .then((res)=>{
           this.saveUserDataUser(res.obj);
           if(res.obj.roleEntity.id==1){
@@ -59,7 +59,6 @@ class Contacts extends React.Component {
           if(!window.location.pathname.includes("user")){
               window.location.replace("/user/mainPage")
           }
-          
         }
       });
      

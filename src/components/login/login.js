@@ -23,7 +23,7 @@ class Login extends React.Component{
             if(data.status){
                 alert("Successful");
                 localStorage.setItem('token',data.obj);
-                this.serverApi.getUserByToken(localStorage.getItem('token'))
+                this.serverApi.getUserByToken(data.obj)
                 .then((res)=>{
                     this.props.saveUserDataUser(res.obj);
                     if(res.obj.roleEntity.id==1){
