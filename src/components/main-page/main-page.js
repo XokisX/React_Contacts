@@ -38,7 +38,7 @@ class MainPage extends React.Component {
                         myContacts: res.obj
                     })
                 }
-            })
+        })
     }
     chooseUser(key) {
         console.log(key);
@@ -105,22 +105,26 @@ class MainPage extends React.Component {
     }
 
     addContact() {
+        
         if (this.state.currentUser != null && this.state.currentUser != 0) {
             this.serverApi.addContact(this.token, this.props.user.id, this.state.currentUser)
                 .then((res) => {
                     console.log(res);
                     alert(res.message);
+                    this.loadContacts();
                 })
         }
     }
 
     deleteContacts(){
+        this.loadUsers();
         if(this.state.usersForSend.length>0){
             this.serverApi.deleteContacts(localStorage.getItem('token'),this.props.user.id,this.state.usersForSend)
             .then((res)=>{
                 console.log(res);
                 if(res.status){
                     alert(res.message);
+                    this.loadContacts();
                 }
             })
         }

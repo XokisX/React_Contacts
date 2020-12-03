@@ -115,4 +115,44 @@ export default class ServerApi{
         })
         return await res.json();
     }
+
+    async deleteUser(token,id){
+        const res =  await fetch(`${serverUrl}apiAdmin/deleteUser`,{
+            method:'POST',
+            mode:'cors',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body:JSON.stringify({userId:id})
+        })
+        return await res.json();
+    }
+
+    async blockUser(token,id){
+        const res =  await fetch(`${serverUrl}apiAdmin/blockUser`,{
+            method:'POST',
+            mode:'cors',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body:JSON.stringify({userId:id})
+        })
+        return await res.json();
+    }
+
+    async registerByAdmin(token,registerData){
+        const res = await fetch(`${serverUrl}apiAdmin/register`,{
+            method:'POST',
+            mode:'cors',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                
+            },
+            body:JSON.stringify(registerData),
+        })
+        return await res.json();
+    }
 }

@@ -28,13 +28,8 @@ class RegisterPage extends React.Component{
         console.log(this.state.registerForm);
         this.serverApi.registerUser(this.state.registerForm)
         .then((data)=>{
-            console.log(data);
-            if(data.status){
-                alert("Successful");
-                //window.location.replace("/");
-            }else{
-                alert("Error");
-            }
+            console.log(data.message);
+            alert(data.message);
         })
     }
 

@@ -21,7 +21,7 @@ class Login extends React.Component{
         this.serverApi.loginUser(this.state.userFormLogin)
         .then((data)=>{
             if(data.status){
-                alert("Successful");
+                alert(data.message);
                 localStorage.setItem('token',data.obj);
                 this.serverApi.getUserByToken(data.obj)
                 .then((res)=>{

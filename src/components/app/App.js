@@ -50,15 +50,20 @@ class Contacts extends React.Component {
 
       this.serverApi.getUserByToken(token)
       .then((res)=>{
-          this.saveUserDataUser(res.obj);
-          if(res.obj.roleEntity.id==1){
-            if(!window.location.pathname.includes("admin")){
-              window.location.replace("/admin/panel");
+        if(!res.obj.is_blocked){
+            this.saveUserDataUser(res.obj);
+            if(res.obj.roleEntity.id==1){
+              if(!window.location.pathname.includes("admin")){
+                window.location.replace("/admin/panel");
+              }
+          }else if (res.obj.roleEntity.id==2){
+            if(!window.location.pathname.includes("user")){
+                window.location.replace("/user/mainPage")
             }
-        }else if (res.obj.roleEntity.id==2){
-          if(!window.location.pathname.includes("user")){
-              window.location.replace("/user/mainPage")
           }
+        }else{
+          localStorage.removeItem('token');
+          window.location.replace('/login');
         }
       });
      
